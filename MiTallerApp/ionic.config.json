@@ -1,0 +1,7 @@
+{
+  "name": "MiTallerApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

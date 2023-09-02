@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Reestablecer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" [fullscreen]="true">
+  <h1>Ingrese sus datos</h1>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-input label="Ingrese usuario" labelPlacement="floating" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Ingrese contraseña" labelPlacement="floating" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Ingrese nueva contraseña" labelPlacement="floating" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <br>
+      <ion-button expand="round" (click)="backLogin()">Confirmar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
