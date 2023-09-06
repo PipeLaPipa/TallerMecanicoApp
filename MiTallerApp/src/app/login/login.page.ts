@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +8,25 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  mensajeInput = 'Ingresar Nombre de Usuario';
+
+  valorEnviar={
+    usuario:"",
+    password:""
+  }
+
   constructor(public router: Router) { }
 
   ngOnInit() {
   }
 
   goHome () {
-    this.router.navigate(['/home']);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        valorEnviar: this.valorEnviar
+      }
+    };
+    this.router.navigate(['/home'], navigationExtras);
   }
 
   goRees () {
