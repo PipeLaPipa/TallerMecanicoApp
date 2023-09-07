@@ -27,4 +27,8 @@ export class HomePage {
 
   }
 
+  backLogin () {
+    this.router.navigate(['/login']);
+  }
+
 }
