@@ -12,13 +12,13 @@ export class HomePage {
   data: any;
   public alertButtons = [
     {
-      text: 'Cancel',
+      text: 'Cancelar',
       role: 'cancel',
       handler: () => {
         this.isAlertOpen=false;      },
     },
     {
-      text: 'OK',
+      text: 'Confirmar',
       role: 'confirm',
       handler: () => {
         this.router.navigate(["/login"]) 

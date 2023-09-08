@@ -17,9 +17,8 @@
 <ion-button class="btnLogin" expand="block" (click)="setOpen(isAlertOpen)">Cerrar Sesión</ion-button>
 <ion-alert
   [isOpen]="isAlertOpen"
-  header="Alert"
-  subHeader="Important message"
-  message="This is an alert!"
+  header="Cerrar Sesión"
+  message="¿Estas seguro que desas Salir?"
   [buttons]="alertButtons"
   (didDismiss)="setResult($event)"
 ></ion-alert>
