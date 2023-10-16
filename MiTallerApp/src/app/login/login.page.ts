@@ -32,4 +32,8 @@ export class LoginPage implements OnInit {
   goRees () {
     this.router.navigate(['/reestablecer']);
   }
+
+  goRegistro () {
+    this.router.navigate(['/registrarse']);
+  }
 }

@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" [fullscreen]="true">
+  <h1>Ingrese sus datos</h1>
+  <form [formGroup]="form">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-input formControlName="user" label="Ingrese usuario" labelPlacement="floating" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="email" label="Ingrese email" labelPlacement="floating" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="password" label="Ingrese contraseña" labelPlacement="floating" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <br>
+      <ion-button expand="round" (click)="registrar()">Crear usuario</ion-button>
+    </ion-card-content>
+  </form>
+</ion-content>
