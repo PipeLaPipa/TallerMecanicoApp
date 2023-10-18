@@ -1,21 +1,41 @@
 <ion-content class="ion-text-center" [fullscreen]="true">
-  <h1>Mi Taller App</h1>
   <img src="assets/mitaller.png">
+  
   <ion-card>
-    <ion-card-header>Iniciar Sesion</ion-card-header>
+    <ion-card-header>
+      <h1>Bienvenido!</h1>
+    </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-input label="Ingrese usuario" labelPlacement="floating" type="text" [(ngModel)]="valorEnviar.usuario"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Ingrese contraseña" labelPlacement="floating" type="password" [(ngModel)]="valorEnviar.password"></ion-input>
-        </ion-item>
-      </ion-list>
-      <br>
-      <ion-button expand="block" (click)="goHome()">Ingresar</ion-button>
-      <br>
-      <a (click)="goRees()">Reestablecer contraseña || </a> <a (click)="goRegistro()">Registrarse</a>
+      <form [formGroup]="loginForm" novalidate >
+        <ion-card-content>
+          <ion-item>
+            <ion-input formControlName="email" label="Ingrese email" labelPlacement="floating" type="text"></ion-input>
+          </ion-item>
+          <div *ngIf="this.loginForm.controls?.['email'].touched && this.loginForm.controls?.['email'].invalid ">
+            <ion-text>
+              El email es obligatorio
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input formControlName="password" label="Ingrese contraseña" labelPlacement="floating" type="password"></ion-input>
+          </ion-item>
+          <div *ngIf="this.loginForm.controls?.['password'].touched && this.loginForm.controls?.['password'].invalid ">
+            <ion-text>
+              La contraseña es obligatoria
+            </ion-text>
+          </div>
+          <br>
+          <ion-button expand="round" (click)="login()">iniciar Sesión</ion-button>
+        </ion-card-content>
+      </form>
     </ion-card-content>
   </ion-card>
-</ion-content>
+  <p  (click)="goRegistro()">No tienes una cuenta? Haz click aqui</p>
+  <p  (click)="goRees()">¿Tienes problemas con tu contraseña?</p>
+  
+  
+
+<!--
+[(ngModel)]="valorEnviar.usuario"
+
+[(ngModel)]="valorEnviar.password"-->

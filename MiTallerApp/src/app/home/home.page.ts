@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -8,48 +9,33 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  isAlertOpen =false;
+
+
   data: any;
-  public alertButtons = [
-    {
-      text: 'Cancelar',
-      role: 'cancel',
-      handler: () => {
-        this.isAlertOpen=false;      },
-    },
-    {
-      text: 'Confirmar',
-      role: 'confirm',
-      handler: () => {
-        this.router.navigate(["/login"]) 
-      },
-    },
-  ];
-
-  constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController) {
-
-
-
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.data = this.router.getCurrentNavigation()?.extras.state;
-      } else { this.router.navigate(["/login"]) }
-    });
-
-
-
-  }
-
-  setResult(ev: any) {
-  }
-  setOpen(isOpen: boolean) {
-      this.isAlertOpen = !this.isAlertOpen;
-
   
 
+  constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController, public authSerice: AuthenticationService) {
+
+
+   
+
+    //this.activeroute.queryParams.subscribe(params => {
+     // if (this.router.getCurrentNavigation()?.extras.state) {
+      //  this.data = this.router.getCurrentNavigation()?.extras.state;
+      //} else { this.router.navigate(["/home"]) }
+    //});
+
 
 
   }
 
+  //setResult(ev: any) {
+  //}
+
+  async logout() {
+    this.authSerice.cerrarSesion().then(()=>{
+      this.router.navigate(['/login']);
+    })
+  }
 
 }

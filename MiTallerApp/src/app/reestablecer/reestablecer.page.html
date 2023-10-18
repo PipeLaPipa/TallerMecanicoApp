@@ -10,11 +10,11 @@
     <ion-card-content>
       <ion-list>
         <ion-item>
-          <ion-input label="Ingrese su correo" labelPlacement="floating" type="text"></ion-input>
+          <ion-input [(ngModel)]="email" label="Ingrese su correo" labelPlacement="floating" type="text"></ion-input>
         </ion-item>
       </ion-list>
       <br>
-      <ion-button expand="round" (click)="backLogin()">Confirmar</ion-button>
+      <ion-button expand="round" (click)="reset()">Confirmar</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

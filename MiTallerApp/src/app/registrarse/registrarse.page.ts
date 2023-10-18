@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-registrarse',
@@ -17,13 +18,13 @@ export class RegistrarsePage implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       user: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email,]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
   get controlErrores() {
-    return this.form?.controls
+    return this.form?.controls;
   }
 
   async registrar() {
@@ -40,7 +41,7 @@ export class RegistrarsePage implements OnInit {
         loading.dismiss()
         this.router.navigate(['/login'])
       }else{
-        console.log('ola');
+        console.log('ingrese datos correctos');
         
       }
 
