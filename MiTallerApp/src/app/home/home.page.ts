@@ -19,18 +19,18 @@ export class HomePage {
 
    
 
-    //this.activeroute.queryParams.subscribe(params => {
-     // if (this.router.getCurrentNavigation()?.extras.state) {
-      //  this.data = this.router.getCurrentNavigation()?.extras.state;
-      //} else { this.router.navigate(["/home"]) }
-    //});
+    /*this.activeroute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        this.data = this.router.getCurrentNavigation()?.extras.state;
+      } else { this.router.navigate(["/home"]) }
+    });*/
 
 
 
   }
 
-  //setResult(ev: any) {
-  //}
+  /*setResult(ev: any) {
+  }*/
 
   async logout() {
     this.authSerice.cerrarSesion().then(()=>{
@@ -38,4 +38,20 @@ export class HomePage {
     })
   }
 
+  irPerfil() {
+    this.router.navigate(['home','perfil']);
+  }
+
+  irUbicacion() {
+    this.router.navigate(['/ubicacion']);
+  }
+
+  irQr() {
+    this.router.navigate(['/qr']);
+  }
+
+  irInfo() {
+    this.router.navigate(['/informacion']);
+  }
 }
+

@@ -51,14 +51,14 @@ export class LoginPage implements OnInit {
   }
 
 
- // goHome () {
- //   let navigationExtras: NavigationExtras = {
- //     state: {
- //       valorEnviar: this.valorEnviar
- //     }
- //   };
- //   this.router.navigate(['/home'], navigationExtras);
-  //}
+  /*goHome () {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        valorEnviar: this.valorEnviar
+      }
+    };
+    this.router.navigate(['/home'], navigationExtras);
+  }*/
 
   goRees () {
     this.router.navigate(['/reestablecer']);
