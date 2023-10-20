@@ -1,0 +1,8 @@
+<div class="ion-text-center">
+    <qrcode [qrdata]="qrString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+</div>
+<ion-button clas="ion-margin" expand="block" (click)="scanear()">Escanear QR</ion-button>
+<ion-item *ng If="resultadoScan">
+    <ion-label class="ion-text-wrap">Resultado de escaneo: {{resultadoScan}} </ion-label>
+</ion-item>
+   

@@ -1,0 +1,52 @@
+
+
+<ion-content [style.visibility]="content_visibility">
+  <!--Menu-->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item (click)="irHome()">Home</ion-item>
+        <ion-item (click)="irPerfil()">Perfil</ion-item>
+        <ion-item (click)="irUbicacion()">ubicacion</ion-item>
+        <ion-item (click)="irQr()">QR</ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-button (click)="logout()">Salir</ion-button>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </div>  
+  <!---->
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>QR</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content>
+      <div class="ion-text-center">
+        <qrcode [qrdata]="qrString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+      <ion-button clas="margin-top" expand="block" (click)="scanear()">Escanear QR</ion-button>
+      <ion-item *ng If="resultadoScan">
+        <ion-label class="ion-text-wrap">Resultado de escaneo: {{resultadoScan}} </ion-label>
+      </ion-item>    
+    </ion-card-content>
+  </ion-card>
+</ion-content>

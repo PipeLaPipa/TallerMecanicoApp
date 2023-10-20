@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
+import { MenuController, NavController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-home',
@@ -12,9 +15,11 @@ export class HomePage {
 
 
   data: any;
+  qrString = 'Es un secreto'
+
   
 
-  constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController, public authSerice: AuthenticationService) {
+  constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController, public authSerice: AuthenticationService, private menuCtrl: MenuController) {
 
 
    
@@ -39,19 +44,17 @@ export class HomePage {
   }
 
   irPerfil() {
-    this.router.navigate(['home','perfil']);
+    this.router.navigate(['perfil']);
   }
 
   irUbicacion() {
-    this.router.navigate(['/ubicacion']);
+    this.router.navigate(['ubicacion']);
   }
 
   irQr() {
-    this.router.navigate(['/qr']);
+    this.router.navigate(['qr']);
   }
 
-  irInfo() {
-    this.router.navigate(['/informacion']);
-  }
+
 }
 

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { UbicacionComponent } from '../ubicacion/ubicacion.component';
-import { QrComponent } from '../qr/qr.component';
-import { InformacionComponent } from '../informacion/informacion.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
+import { UbicacionComponent } from '../components/ubicacion/ubicacion.component';
+import { QrComponent } from '../components/qr/qr.component';
+import { InformacionComponent } from '../components/informacion/informacion.component';
 
 const routes: Routes = [
   {
