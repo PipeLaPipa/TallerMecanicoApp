@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getFirestore, setDoc, doc } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthenticationService {
 
   authState = new BehaviorSubject(false);
+  firestore = inject(AngularFirestore);
 
   constructor(public ngFireAuth: AngularFireAuth) { }
 
@@ -35,5 +39,15 @@ export class AuthenticationService {
   isAuthenticated() {
     return this.authState.value;
   }
+
+
+  //--------------------------------------------------BASE DE DATOS//--------------------------------------------------
+
+  //setear documento
+  setDocument(path: string, data: any ) {
+    return setDoc(doc(getFirestore(), path), data);
+  }
+
+
 }
 

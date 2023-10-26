@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
+import { InfoService } from '../services/info.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class RegistrarsePage implements OnInit {
   form: FormGroup;
 
-  constructor(public router: Router, public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService) { }
+  constructor(public router: Router, public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService, private infoService: InfoService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -40,6 +41,8 @@ export class RegistrarsePage implements OnInit {
       if (user) {
         loading.dismiss()
         this.router.navigate(['/login'])
+        const response = await this.infoService.addInfo(this.form.value);
+        console.log(response);
       }else{
         console.log('ingrese datos correctos');
         
@@ -47,4 +50,5 @@ export class RegistrarsePage implements OnInit {
 
     }
   }
+
 }

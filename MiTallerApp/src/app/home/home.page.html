@@ -39,8 +39,15 @@
   <div>
     <h1>Bienvenido a MiTallerApp</h1>
     <p>Somos un taller mecánico de servicios express en la comuna de Puente Alto, Enfocados en brindar un gran servicio
-      y con la mejor tecnologia
-    </p>
+      y con la mejor tecnologia</p>
+  </div>
+  <div class="Info">
+    <div class="info" *ngFor="let info of info" >
+      <div class="informacion">
+        <p>{{info.user}}</p>
+        <p>{{info.email}}</p>
+      </div>
+    </div>
   </div>
   
 
