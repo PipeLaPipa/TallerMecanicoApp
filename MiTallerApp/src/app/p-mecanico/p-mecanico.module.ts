@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UbicacionPageRoutingModule } from './ubicacion-routing.module';
+import { PMecanicoPageRoutingModule } from './p-mecanico-routing.module';
 
-import { UbicacionPage } from './ubicacion.page';
+import { PMecanicoPage } from './p-mecanico.page';
 
 @NgModule({
-  declarations: [UbicacionPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UbicacionPageRoutingModule
-  ], exports: [
-    UbicacionPage,
-  ]
+    PMecanicoPageRoutingModule
+  ],
+  declarations: [PMecanicoPage]
 })
-export class UbicacionPageModule {}
+export class PMecanicoPageModule {}

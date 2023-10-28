@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
 import { PerfilComponent } from '../components/perfil/perfil.component';
 import { UbicacionComponent } from '../components/ubicacion/ubicacion.component';
-import { QrComponent } from '../components/qr/qr.component';
 import { InformacionComponent } from '../components/informacion/informacion.component';
 
 const routes: Routes = [
@@ -18,10 +17,6 @@ const routes: Routes = [
       {
         path: 'ubicacion',
         component: UbicacionComponent
-      },
-      {
-        path: 'qr',
-        component: QrComponent
       },
       {
         path: 'informacion',

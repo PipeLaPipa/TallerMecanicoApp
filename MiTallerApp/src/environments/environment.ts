@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  ApiKeyGoogleMaps: "AIzaSyC5srphSc4KEaqnO9eOKlRf4K7Gcw88Zog",
   firebaseConfig : {
     apiKey: "AIzaSyC3LyC-S2EPU5OaH3O1YVVI6a1ES5n7YMg",
     authDomain: "tellevoapp-6c4e3.firebaseapp.com",

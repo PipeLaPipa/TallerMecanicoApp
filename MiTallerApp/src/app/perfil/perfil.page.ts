@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InfoService } from '../services/info.service';
+import { Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-perfil',
@@ -9,9 +11,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PerfilPage implements OnInit {
 
-  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService) { }
+  info: Usuario[];
+  
+  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService) {
+    {
+      this.info = [{
+        user: 'Pipe',
+        email: 'Pipe@gmail.com',
+      }];
+    }
+   }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
+    this.infoService.getInfo().subscribe(info =>{
+      console.log(info);
+    })
   }
 
   async logout() {
@@ -26,10 +41,6 @@ export class PerfilPage implements OnInit {
 
   irUbicacion() {
     this.router.navigate(['ubicacion']);
-  }
-
-  irQr() {
-    this.router.navigate(['qr']);
   }
 
   irHome() {

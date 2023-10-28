@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content class="ion-text-center" [fullscreen]="true">
 
   <!--Menu-->
   <ion-menu contentId="main-content">
@@ -12,7 +12,6 @@
         <ion-item (click)="irHome()">Home</ion-item>
         <ion-item (click)="irPerfil()">Perfil</ion-item>
         <ion-item (click)="irUbicacion()">ubicacion</ion-item>
-        <ion-item (click)="irQr()">QR</ion-item>
       </ion-list>
     </ion-content>
     <ion-button (click)="logout()">Salir</ion-button>
@@ -28,6 +27,7 @@
   </div>  
   <!---->
 
+  
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -36,6 +36,20 @@
       <ion-title>Perfil</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="avatar">
+    <ion-avatar >
+      <img src="./assets/avatar2.jfif"/>
+    </ion-avatar>
+  </div>
+  <div class="Info">
+    <div class="info" *ngFor="let info of info" >
+      <div class="informacion">
+        <p>Usuario: {{info.user}}</p>
+        <p>Email: {{info.email}}</p>
+      </div>
+    </div>
+  </div>
+
 </ion-content>
 
 

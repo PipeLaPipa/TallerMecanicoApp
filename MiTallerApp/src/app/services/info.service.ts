@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
-import { Info } from '../interfaces/info';
+import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,19 +10,19 @@ export class InfoService {
 
   constructor(private firestore: Firestore) { }
 
-  addInfo(info: Info){
-    const infoRef = collection(this.firestore, 'info');
+  addInfo(info: Usuario){
+    const infoRef = collection(this.firestore, 'usuario');
     return addDoc(infoRef, info);
   }
 
-  getInfo(): Observable<Info[]>{
-    const infoRef = collection(this.firestore, 'info');
-    return collectionData(infoRef, {idField: 'id'}) as Observable<Info[]>;
+  getInfo(): Observable<Usuario[]>{
+    const infoRef = collection(this.firestore, 'usuario');
+    return collectionData(infoRef, {idField: 'id'}) as Observable<Usuario[]>;
 
   }
 
-  deleteInfo(info: Info){
-    const infoDocRef = doc(this.firestore, `info/${info.id}`);
+  deleteInfo(info: Usuario){
+    const infoDocRef = doc(this.firestore, `usuario/${info.id}`);
     return deleteDoc(infoDocRef);
   }
 }

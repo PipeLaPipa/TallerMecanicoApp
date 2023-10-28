@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
 import { MenuController, NavController } from '@ionic/angular';
 import { InfoService } from '../services/info.service';
-import { Info } from '../interfaces/info';
+import { Usuario } from '../interfaces/usuario';
 
 
 
@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
 
   data: any;
   qrString = 'Es un secreto'
-  info: Info[];
+  info: Usuario[];
 
   constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController, public authSerice: AuthenticationService, private menuCtrl: MenuController, private infoService: InfoService) {
 
@@ -57,9 +57,6 @@ export class HomePage implements OnInit {
     this.router.navigate(['ubicacion']);
   }
 
-  irQr() {
-    this.router.navigate(['qr']);
-  }
 
   ngOnInit(): void {
     this.infoService.getInfo().subscribe(info =>{

@@ -6,7 +6,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    //canActivate: [AuthGuardService]//Guard
   },
   {
     path: 'login',
@@ -23,7 +22,8 @@ const routes: Routes = [
   {
     path: 'registrarse',
     loadChildren: () => import('./registrarse/registrarse.module').then( m => m.RegistrarsePageModule)
-  },  {
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
@@ -36,10 +36,16 @@ const routes: Routes = [
     loadChildren: () => import('./ubicacion/ubicacion.module').then( m => m.UbicacionPageModule)
   },
 
-  /*{
+  {
     path: '**',
     loadComponent: () => import('./not-found/not-found.component').then( m => m.NotFoundComponent)
-  }*/
+  },
+  {
+    path: 'p-mecanico',
+    loadChildren: () => import('./p-mecanico/p-mecanico.module').then( m => m.PMecanicoPageModule)
+    //canActivate: [AuthGuardService]//Guard
+  }
+
 
 ];
 

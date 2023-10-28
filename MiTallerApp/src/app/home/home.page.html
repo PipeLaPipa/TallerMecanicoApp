@@ -11,7 +11,6 @@
       <ion-list>
         <ion-item (click)="irPerfil()">Perfil</ion-item>
         <ion-item (click)="irUbicacion()">ubicacion</ion-item>
-        <ion-item (click)="irQr()">QR</ion-item>
       </ion-list>
     </ion-content>
     <ion-button (click)="logout()">Salir</ion-button>
@@ -41,14 +40,5 @@
     <p>Somos un taller mecánico de servicios express en la comuna de Puente Alto, Enfocados en brindar un gran servicio
       y con la mejor tecnologia</p>
   </div>
-  <div class="Info">
-    <div class="info" *ngFor="let info of info" >
-      <div class="informacion">
-        <p>{{info.user}}</p>
-        <p>{{info.email}}</p>
-      </div>
-    </div>
-  </div>
-  
 
 </ion-content>

@@ -7,8 +7,6 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { PerfilComponent } from '../components/perfil/perfil.component';
 import { RouterModule } from '@angular/router';
-import { QRCodeModule } from 'angularx-qrcode';
-import { QrComponent } from '../components/qr/qr.component';
 import { InformacionComponent } from '../components/informacion/informacion.component';
 import { UbicacionComponent } from '../components/ubicacion/ubicacion.component';
 
@@ -20,9 +18,8 @@ import { UbicacionComponent } from '../components/ubicacion/ubicacion.component'
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
-    QRCodeModule
+    HomePageRoutingModule
   ],
-  declarations: [HomePage, PerfilComponent, QrComponent, InformacionComponent, UbicacionComponent]
+  declarations: [HomePage, PerfilComponent,  InformacionComponent, UbicacionComponent]
 })
 export class HomePageModule {}

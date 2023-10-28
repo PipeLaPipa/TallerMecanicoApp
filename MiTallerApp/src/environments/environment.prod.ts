@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  ApiKeyGoogleMaps: "AIzaSyC5srphSc4KEaqnO9eOKlRf4K7Gcw88Zog",
   firebaseConfig : {
     
     authDomain: "tellevoapp-6c4e3.firebaseapp.com",
