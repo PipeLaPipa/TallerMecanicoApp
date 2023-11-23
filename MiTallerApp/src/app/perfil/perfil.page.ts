@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InfoService } from '../services/info.service';
 import { Usuario } from '../interfaces/usuario';
+import { AuthenticationService } from '../services/authentication.service';
+import { InfoService } from '../services/info.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -13,21 +15,28 @@ export class PerfilPage implements OnInit {
 
   info: Usuario[];
   
-  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService) {
-    {
-      this.info = [{
-        user: 'Pipe',
-        email: 'Pipe@gmail.com',
-      }];
-    }
+  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService, public firestore: AngularFirestore) {
    }
 
+  ngOnInit() {
+    const userId = localStorage.getItem('userId');
 
-  ngOnInit(): void {
-    this.infoService.getInfo().subscribe(info =>{
-      console.log(info);
-    })
+    console.log({userId})
+    this.obtenerDatosUsuario(userId);
   }
+
+  async obtenerDatosUsuario(userId: string) {
+    console.log('user ID:', userId);
+  
+    try {
+      const usuario = await firstValueFrom(this.infoService.getUser('usuarios', userId));
+      console.log('Datos del usuario:', usuario);
+      this.info = [usuario];
+    } catch (error) {
+      console.error('Error al obtener datos del usuario:', error);
+    }
+  }
+  
 
   async logout() {
     this.authSerice.cerrarSesion().then(()=>{

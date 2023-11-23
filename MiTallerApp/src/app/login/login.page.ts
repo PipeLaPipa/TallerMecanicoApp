@@ -36,17 +36,24 @@ export class LoginPage implements OnInit {
 
 
   async login() {
-    if(this.loginForm?.valid){
-      const user = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).catch((error) =>{
+    if (this.loginForm?.valid) {
+      const userCredential = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).catch((error) => {
         console.log(error);
-      })
-      if (user) {
-        this.router.navigate(['/home'])
-      }else{
-        console.log('ingrese datos correctos');
+      });
+  
+      if (userCredential && userCredential.user) {
+        console.log({userCredential})
+        const userId = userCredential.user.uid;
+        console.log('ID del usuario:', userId);
         
+        // Ahora puedes usar userId para obtener los datos del usuario
+        localStorage.setItem('userId', userId);
+        // this.obtenerDatosUsuario(userId);
+        
+        this.router.navigate(['/home']);
+      } else {
+        console.log('Ingrese datos correctos');
       }
-
     }
   }
 
