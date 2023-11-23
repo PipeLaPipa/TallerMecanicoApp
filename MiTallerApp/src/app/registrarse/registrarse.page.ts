@@ -26,6 +26,7 @@ export class RegistrarsePage implements OnInit {
       user: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['cliente']
     });
   }
 
