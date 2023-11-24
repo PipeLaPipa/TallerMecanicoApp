@@ -49,9 +49,20 @@ const routes: Routes = [
     loadChildren: () => import('./auto-detalle/auto-detalle.module').then( m => m.AutoDetallePageModule)
   },
   {
+    path: 'registro-horas',
+    loadChildren: () => import('./registro-horas/registro-horas.module').then( m => m.RegistroHorasPageModule)
+  },
+  {
+    path: 'horas-agendadas',
+    loadChildren: () => import('./horas-agendadas/horas-agendadas.module').then( m => m.HorasAgendadasPageModule)
+  },
+  {
     path: '**',
     loadComponent: () => import('./not-found/not-found.component').then( m => m.NotFoundComponent)
   },
+
+
+
 
 
 

@@ -53,4 +53,20 @@ export class InfoService {
       })
     );
   }
+
+  addHour(uid: string, info: Auto) {
+    const infoRef = doc(this.firestore, 'agenda', uid);
+    return setDoc(infoRef, info);
+  }
+
+  getHour(path: string, id: string): Observable<Auto> {
+    const documentRef = this.database.collection(path).doc(id);
+
+    return documentRef.valueChanges().pipe(map((data: any) => {
+        // Aquí puedes realizar cualquier transformación adicional en los datos si es necesario
+        console.log('auto list: ', data)
+        return data;
+      })
+    );
+  }
 }

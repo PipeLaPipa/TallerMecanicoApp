@@ -62,11 +62,11 @@ export class PerfilPage implements OnInit {
   }
 
   irUbicacion() {
-    this.router.navigate(['ubicacion']);
+    this.router.navigate(['/ubicacion']);
   }
 
   irHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home'], { relativeTo: this.activeroute, skipLocationChange: true });
   }
 
   irAuto() {

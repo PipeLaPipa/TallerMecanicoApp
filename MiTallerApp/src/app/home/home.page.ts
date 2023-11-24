@@ -6,8 +6,6 @@ import { MenuController, NavController } from '@ionic/angular';
 import { InfoService } from '../services/info.service';
 import { Usuario } from '../interfaces/usuario';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,38 +13,22 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class HomePage implements OnInit {
 
+  constructor(
+    public activeroute: ActivatedRoute,
+    private router: Router,
+    private alertController: AlertController,
+    public authSerice: AuthenticationService,
+    private menuCtrl: MenuController,
+    private infoService: InfoService
+  ) {}
 
-  data: any;
-  qrString = 'Es un secreto'
-  info: Usuario[];
-
-  constructor(public activeroute: ActivatedRoute, private router: Router, private alertController: AlertController, public authSerice: AuthenticationService, private menuCtrl: MenuController, private infoService: InfoService) {
-
-    {
-      this.info = [{
-        user: 'Pipe',
-        email: 'Pipe@gmail.com',
-      }];
-    }
-   
-
-    /*this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.data = this.router.getCurrentNavigation()?.extras.state;
-      } else { this.router.navigate(["/home"]) }
-    });*/
-
-
-
+  ngOnInit(): void {
   }
 
-  /*setResult(ev: any) {
-  }*/
-
   async logout() {
-    this.authSerice.cerrarSesion().then(()=>{
+    this.authSerice.cerrarSesion().then(() => {
       this.router.navigate(['/login']);
-    })
+    });
   }
 
   irPerfil() {
@@ -57,12 +39,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['ubicacion']);
   }
 
-
-  ngOnInit(): void {
-    this.infoService.getInfo().subscribe(info =>{
-      console.log(info);
-    })
+  irAgenda() {
+    this.router.navigate(['registro-horas']);
   }
-
 }
-

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agendar Hora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" [fullscreen]="true">
+  <form [formGroup]="form" novalidate>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          formControlName="fecha"
+          label="Seleccione la fecha"
+          labelPlacement="floating"
+          type="date"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['fecha'].touched && this.form.controls?.['fecha'].invalid "
+      >
+        <ion-text> Debe seleccionar una fecha </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="titulo"
+          label="Motivo de la consulta"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['titulo'].touched && this.form.controls?.['titulo'].invalid "
+      >
+        <ion-text> Agregue un titulo </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="descripcion"
+          label="Describa su motivo"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['descripcion'].touched && this.form.controls?.['descripcion'].invalid "
+      >
+        <ion-text> Agregue una descripción </ion-text>
+      </div>
+      <br />
+      <ion-button expand="round" (click)="agendarHora()"
+        >Registrar</ion-button
+      >
+    </ion-card-content>
+  </form>
+</ion-content>

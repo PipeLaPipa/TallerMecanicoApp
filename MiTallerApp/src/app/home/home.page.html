@@ -1,44 +1,48 @@
-<ion-content class="ion-text-center">
-
-  <!--Menu-->
-  <ion-menu contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list>
-        <ion-item (click)="irPerfil()">Perfil</ion-item>
-        <ion-item (click)="irUbicacion()">Ubicacion</ion-item>
-      </ion-list>
-    </ion-content>
-    <ion-button (click)="logout()">Salir</ion-button>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-  </div>  
-  <!---->
-
+<!--Menu-->
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item (click)="irPerfil()">Perfil</ion-item>
+      <ion-item (click)="irUbicacion()">Ubicacion</ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-button (click)="logout()">Salir</ion-button>
+</ion-menu>
+<div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Home</ion-title>
     </ion-toolbar>
   </ion-header>
+</div>
+<!---->
 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
   <div>
     <h1>Bienvenido a MiTallerApp</h1>
-    <p>Somos un taller mecánico de servicios express en la comuna de Puente Alto, Enfocados en brindar un gran servicio
-      y con la mejor tecnologia</p>
+    <p>
+      Somos un taller mecánico de servicios express en la comuna de Puente Alto,
+      Enfocados en brindar un gran servicio y con la mejor tecnologia
+    </p>
   </div>
 
+  <br />
+  <h3>Opciones</h3>
+  <ion-button expand="round" (click)="irAgenda()">Agendar hora</ion-button>
 </ion-content>
