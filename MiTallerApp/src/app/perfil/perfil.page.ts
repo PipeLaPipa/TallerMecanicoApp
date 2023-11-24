@@ -5,6 +5,8 @@ import { Usuario } from '../interfaces/usuario';
 import { AuthenticationService } from '../services/authentication.service';
 import { InfoService } from '../services/info.service';
 import { firstValueFrom } from 'rxjs';
+import { Auto } from '../interfaces/auto';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -14,15 +16,15 @@ import { firstValueFrom } from 'rxjs';
 export class PerfilPage implements OnInit {
 
   info: Usuario[];
+  cars: Auto[];	
   
-  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService, public firestore: AngularFirestore) {
+  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService, public firestore: AngularFirestore, public loadingCtrl: LoadingController) {
    }
 
   ngOnInit() {
     const userId = localStorage.getItem('userId');
-
-    console.log({userId})
     this.obtenerDatosUsuario(userId);
+    this.obtenerAutos();
   }
 
   async obtenerDatosUsuario(userId: string) {
@@ -37,15 +39,26 @@ export class PerfilPage implements OnInit {
     }
   }
   
+  async obtenerAutos() {
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+
+    try {
+      const userId = localStorage.getItem('userId');
+      const autos = await firstValueFrom(this.infoService.getCar('autos', userId))
+      console.log('Autos del usuario:', autos);
+      this.cars = [autos];
+      loading.dismiss();
+    } catch (error) {
+      console.error('Error al obtener autos del usuario:', error);
+      loading.dismiss();
+    }
+  }
 
   async logout() {
     this.authSerice.cerrarSesion().then(()=>{
       this.router.navigate(['/login']);
     })
-  }
-
-  irPerfil() {
-    this.router.navigate(['perfil']);
   }
 
   irUbicacion() {
@@ -56,5 +69,12 @@ export class PerfilPage implements OnInit {
     this.router.navigate(['home']);
   }
 
+  irAuto() {
+    this.router.navigate(['/auto']);
+  }
+
+  irDetalleAuto() {
+    this.router.navigate(['/auto-detalle']);
+  }
 
 }

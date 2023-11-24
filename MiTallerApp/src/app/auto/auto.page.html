@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar Auto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" [fullscreen]="true">
+  <h1>Ingrese los datos del auto</h1>
+  <form [formGroup]="form" novalidate>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          formControlName="marca"
+          label="Ingrese marca"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['marca'].touched && this.form.controls?.['marca'].invalid "
+      >
+        <ion-text> La marca es obligatoria </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="modelo"
+          label="Ingrese modelo"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['modelo'].touched && this.form.controls?.['modelo'].invalid "
+      >
+        <ion-text> La marca es obligatoria </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="year"
+          label="Ingrese año"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['year'].touched && this.form.controls?.['year'].invalid "
+      >
+        <ion-text> El año debe ser de largo 4 </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="patente"
+          label="Ingrese patente"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['patente'].touched && this.form.controls?.['patente'].invalid "
+      >
+        <ion-text> La patente debe ser de largo 6 </ion-text>
+      </div>
+      <ion-item>
+        <ion-input
+          formControlName="color"
+          label="Ingrese color"
+          labelPlacement="floating"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="this.form.controls?.['color'].touched && this.form.controls?.['color'].invalid "
+      >
+        <ion-text> El color es obligatorio </ion-text>
+      </div>
+      <br />
+      <ion-button expand="round" (click)="registrarAuto()"
+        >Registrar</ion-button
+      >
+    </ion-card-content>
+  </form>
+</ion-content>

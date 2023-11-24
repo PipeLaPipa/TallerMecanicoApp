@@ -35,16 +35,25 @@ const routes: Routes = [
     path: 'ubicacion',
     loadChildren: () => import('./ubicacion/ubicacion.module').then( m => m.UbicacionPageModule)
   },
-
-  {
-    path: '**',
-    loadComponent: () => import('./not-found/not-found.component').then( m => m.NotFoundComponent)
-  },
   {
     path: 'p-mecanico',
     loadChildren: () => import('./p-mecanico/p-mecanico.module').then( m => m.PMecanicoPageModule)
     //canActivate: [AuthGuardService]//Guard
-  }
+  },
+  {
+    path: 'auto',
+    loadChildren: () => import('./auto/auto.module').then( m => m.AutoPageModule)
+  },
+  {
+    path: 'auto-detalle',
+    loadChildren: () => import('./auto-detalle/auto-detalle.module').then( m => m.AutoDetallePageModule)
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./not-found/not-found.component').then( m => m.NotFoundComponent)
+  },
+
+
 
 
 ];

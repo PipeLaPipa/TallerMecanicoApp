@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-buttons slot="start">
+    <!-- Agrega el botón de retroceso aquí -->
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Especificaciones Auto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list style="display: flex; flex-direction: column;" *ngFor="let car of cars">
+    <ion-item>
+      <ion-label>Marca: {{car.marca}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Modelo: {{car.modelo}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Año: {{car.year}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Patente: {{car.patente}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Color: {{car.color}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
