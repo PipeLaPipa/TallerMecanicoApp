@@ -1,4 +1,14 @@
-import { Component, ElementRef, Inject, Input, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  NgZone,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UbicacionService } from './ubicacion.service';
@@ -7,7 +17,7 @@ import { DOCUMENT } from '@angular/common';
 import { Plugins } from '@capacitor/core';
 
 declare var google: any;
-const {Geolocation} = Plugins;
+const { Geolocation } = Plugins;
 
 @Component({
   selector: 'app-ubicacion',
@@ -15,11 +25,10 @@ const {Geolocation} = Plugins;
   styleUrls: ['./ubicacion.page.scss'],
 })
 export class UbicacionPage implements OnInit {
-
   //coordenadascuenta
   @Input() position = {
     lat: -33.5984849,
-    lng: -70.579503
+    lng: -70.579503,
   };
 
   map: any;
@@ -29,22 +38,31 @@ export class UbicacionPage implements OnInit {
 
   @ViewChild('map') divMap: ElementRef;
 
-  constructor(public activeroute: ActivatedRoute, private router: Router,
-    public authSerice: AuthenticationService, private googlemapsService: UbicacionService,
-    public modalController: ModalController, private renderer: Renderer2, @Inject(DOCUMENT) private document) { }
+  constructor(
+    public activeroute: ActivatedRoute,
+    private router: Router,
+    public authSerice: AuthenticationService,
+    private googlemapsService: UbicacionService,
+    public modalController: ModalController,
+    private renderer: Renderer2,
+    private ngZone: NgZone,
+    @Inject(DOCUMENT) private document
+  ) {}
 
   ngOnInit(): void {
     this.init();
   }
 
   async init() {
-    this.googlemapsService.init(this.renderer, this.document).then( () => {
-      this.initMap();
-    }).catch( (err) => {
-      console.log(err);
-    });
+    this.googlemapsService
+      .init(this.renderer, this.document)
+      .then(() => {
+        this.initMap();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
 
   initMap() {
     const position = this.position;
@@ -69,30 +87,45 @@ export class UbicacionPage implements OnInit {
     /*this.infowindow = new google.maps.InfoWindow();
     if (this.label.titulo.length) {
       this*/
-}
+  }
 
-clickHandleEvent() {
-  this.map.addListener('click', (event: any) => {
-    const position = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
-    };
-    this.addMarker(position);
-  });
-}
+  clickHandleEvent() {
+    this.map.addListener('click', (event: any) => {
+      const position = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      this.addMarker(position);
+    });
+  }
 
-addMarker(position: any): void {
+  addMarker(position: any): void {
+    let latLng = new google.maps.LatLng(position.lat, position.lng);
 
-  let latLng = new google.maps.LatLng(position.lat, position.lng);
+    this.marker.setPosition(latLng);
+    this.map.panTo(position);
+    this.positionSet = position;
+  }
 
-  this.marker.setPosition(latLng);
-  this.map.panTo(position);
-  this.positionSet = position;
+  centrarEnUbicacionActual() {
+    // Solicita la ubicación actual al servicio y centra el mapa en esa ubicación
+    this.googlemapsService.obtenerUbicacionActual().then((ubicacion) => {
+      const position = {
+        lat: ubicacion.latitude,
+        lng: ubicacion.longitude,
+      }
+      this.ngZone.run(() => {
+        this.googlemapsService.centrarMapaEnUbicacion(
+          ubicacion.latitude,
+          ubicacion.longitude,
+          this.map
+        );
+        this.addMarker(position);
+      });
+    });
+  }
 
-}
-
-
-/*async mylocation() {
+  /*async mylocation() {
 
   console.log('mylocation() click')
 
@@ -111,9 +144,9 @@ addMarker(position: any): void {
   }*/
 
   async logout() {
-    this.authSerice.cerrarSesion().then(()=>{
+    this.authSerice.cerrarSesion().then(() => {
       this.router.navigate(['/login']);
-    })
+    });
   }
 
   irPerfil() {
@@ -127,6 +160,4 @@ addMarker(position: any): void {
   irHome() {
     this.router.navigate(['home']);
   }
-
-
 }

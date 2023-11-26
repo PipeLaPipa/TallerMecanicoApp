@@ -45,4 +45,25 @@ export class UbicacionService {
     });
   }
 
+  centrarMapaEnUbicacion(latitud: number, longitud: number, mapa: any) {
+    const ubicacion = new google.maps.LatLng(latitud, longitud);
+    mapa.panTo(ubicacion);
+  }
+
+  obtenerUbicacionActual(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
 }
