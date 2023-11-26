@@ -3,6 +3,9 @@ import { Router, NavigationExtras } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
+import { InfoService } from '../services/info.service';
+import { Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,7 @@ export class LoginPage implements OnInit {
   //  password:""
   //}
 
-  constructor(public router: Router, public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService) { }
+  constructor(public router: Router, public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService, private infoService: InfoService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -41,7 +44,7 @@ export class LoginPage implements OnInit {
         console.log(error);
       });
   
-      if (userCredential && userCredential.user) {
+      if (userCredential && userCredential.user  ) {
         console.log({userCredential})
         const userId = userCredential.user.uid;
         console.log('ID del usuario:', userId);
@@ -49,8 +52,18 @@ export class LoginPage implements OnInit {
         // Ahora puedes usar userId para obtener los datos del usuario
         localStorage.setItem('userId', userId);
         // this.obtenerDatosUsuario(userId);
+        const usuario: Usuario = await firstValueFrom(this.infoService.getUser('usuarios', userId));
+        console.log('Datos del usuario:', usuario);
         
-        this.router.navigate(['/home']);
+        if(usuario.role === 'cliente'){
+          return this.router.navigate(['/home']);
+        }
+
+        if(usuario.role === 'mecanico'){
+          return this.router.navigate(['/horas-agendadas']);
+        }
+
+        return;
       } else {
         console.log('Ingrese datos correctos');
       }

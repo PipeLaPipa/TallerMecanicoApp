@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-buttons slot="start">
+    <!-- Agrega el botón de retroceso aquí -->
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Detalle Hora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list style="display: flex; flex-direction: column;" *ngFor="let hora of hora">
+    <ion-item>
+      <ion-label>Motivo: {{hora.titulo}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Detalle motivo: {{hora.descripcion}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha Hora: {{hora.fecha}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar>
+    <ion-title >Datos Cliente</ion-title>
+  </ion-toolbar>
+  <ion-list style="display: flex; flex-direction: column;" *ngFor="let user of usuario">
+    <ion-item>
+      <ion-label>Nombre: {{user.user}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email: {{user.email}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

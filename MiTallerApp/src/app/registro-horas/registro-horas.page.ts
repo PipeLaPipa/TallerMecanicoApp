@@ -48,7 +48,7 @@ export class RegistroHorasPage implements OnInit {
           // Utiliza el uid al agregar la información a Firestore
           await this.infoService.addHour(userId, this.form.value);
           loading.dismiss();
-          this.irPerfil()
+          this.irHome()
 
         } else {
           console.log('Ingrese datos correctos');
@@ -60,8 +60,8 @@ export class RegistroHorasPage implements OnInit {
     }
   }
 
-  irPerfil() {
-    this.router.navigate(['/perfil']);
+  irHome() {
+    this.router.navigate(['/home']);
   }
 
 }

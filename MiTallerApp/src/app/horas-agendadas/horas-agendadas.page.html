@@ -1,13 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>horas-agendadas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Horas Agendadas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">horas-agendadas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="autos" *ngFor="let hora of horasAgendadas">
+    <ion-list>
+      <ion-item (click)="irDetalleHoraAgendada(hora.id)" >Motivo: {{hora.titulo}} | {{hora.fecha}}</ion-item>
+    </ion-list>
+  </div>
 </ion-content>

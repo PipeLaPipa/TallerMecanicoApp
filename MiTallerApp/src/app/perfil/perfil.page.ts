@@ -14,12 +14,17 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-
   info: Usuario[];
-  cars: Auto[];	
-  
-  constructor(public activeroute: ActivatedRoute, private router: Router, public authSerice: AuthenticationService, private infoService: InfoService, public firestore: AngularFirestore, public loadingCtrl: LoadingController) {
-   }
+  cars: Auto[];
+
+  constructor(
+    public activeroute: ActivatedRoute,
+    private router: Router,
+    public authSerice: AuthenticationService,
+    private infoService: InfoService,
+    public firestore: AngularFirestore,
+    public loadingCtrl: LoadingController
+  ) {}
 
   ngOnInit() {
     const userId = localStorage.getItem('userId');
@@ -29,25 +34,30 @@ export class PerfilPage implements OnInit {
 
   async obtenerDatosUsuario(userId: string) {
     console.log('user ID:', userId);
-  
+
     try {
-      const usuario = await firstValueFrom(this.infoService.getUser('usuarios', userId));
+      const usuario = await firstValueFrom(
+        this.infoService.getUser('usuarios', userId)
+      );
       console.log('Datos del usuario:', usuario);
       this.info = [usuario];
     } catch (error) {
       console.error('Error al obtener datos del usuario:', error);
     }
   }
-  
+
   async obtenerAutos() {
     const loading = await this.loadingCtrl.create();
     await loading.present();
 
     try {
       const userId = localStorage.getItem('userId');
-      const autos = await firstValueFrom(this.infoService.getCar('autos', userId))
+      const autos = await firstValueFrom(
+        this.infoService.getCar('autos', userId)
+      );
       console.log('Autos del usuario:', autos);
-      this.cars = [autos];
+
+      if (autos) this.cars = [autos];
       loading.dismiss();
     } catch (error) {
       console.error('Error al obtener autos del usuario:', error);
@@ -56,9 +66,9 @@ export class PerfilPage implements OnInit {
   }
 
   async logout() {
-    this.authSerice.cerrarSesion().then(()=>{
+    this.authSerice.cerrarSesion().then(() => {
       this.router.navigate(['/login']);
-    })
+    });
   }
 
   irUbicacion() {
@@ -66,7 +76,10 @@ export class PerfilPage implements OnInit {
   }
 
   irHome() {
-    this.router.navigate(['/home'], { relativeTo: this.activeroute, skipLocationChange: true });
+    this.router.navigate(['/home'], {
+      relativeTo: this.activeroute,
+      skipLocationChange: true,
+    });
   }
 
   irAuto() {
@@ -76,5 +89,4 @@ export class PerfilPage implements OnInit {
   irDetalleAuto() {
     this.router.navigate(['/auto-detalle']);
   }
-
 }

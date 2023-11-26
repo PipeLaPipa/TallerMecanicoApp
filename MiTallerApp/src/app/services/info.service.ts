@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { Auto } from '../interfaces/auto';
+import { Agenda } from '../interfaces/agenda';
 @Injectable({
   providedIn: 'root'
 })
@@ -59,14 +60,29 @@ export class InfoService {
     return setDoc(infoRef, info);
   }
 
-  getHour(path: string, id: string): Observable<Auto> {
+  getHour(path: string, id: string): Observable<Agenda> {
     const documentRef = this.database.collection(path).doc(id);
 
     return documentRef.valueChanges().pipe(map((data: any) => {
         // Aquí puedes realizar cualquier transformación adicional en los datos si es necesario
-        console.log('auto list: ', data)
+        console.log('hora agendada: ', data)
         return data;
       })
     );
+  }
+
+  getHorasAgendadas(): Observable<any[]> {
+    return this.database
+      .collection('agenda')
+      .snapshotChanges() // Utilizar snapshotChanges en lugar de valueChanges
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as any;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
   }
 }

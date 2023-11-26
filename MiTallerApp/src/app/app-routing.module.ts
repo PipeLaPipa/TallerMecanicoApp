@@ -57,9 +57,14 @@ const routes: Routes = [
     loadChildren: () => import('./horas-agendadas/horas-agendadas.module').then( m => m.HorasAgendadasPageModule)
   },
   {
+    path: 'hora-detalle/:id',
+    loadChildren: () => import('./hora-detalle/hora-detalle.module').then( m => m.HoraDetallePageModule)
+  },
+  {
     path: '**',
     loadComponent: () => import('./not-found/not-found.component').then( m => m.NotFoundComponent)
   },
+
 
 
 
